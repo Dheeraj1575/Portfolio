@@ -1,12 +1,7 @@
 import { motion } from 'framer-motion';
-import { Mail, Phone, Send, ExternalLink, Link2 } from 'lucide-react';
-
-// Inline SVG icons for social platforms not in lucide-react v1.x
-const GithubIcon = ({ size = 18 }: { size?: number }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-    <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
-  </svg>
-);
+import { Mail, Phone, Send, Link2 } from 'lucide-react';
+import { SectionLabel } from '../Common/SectionInterstitials';
+import MagneticButton from '../Common/MagneticButton';
 
 const LinkedinIcon = ({ size = 18 }: { size?: number }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -15,213 +10,212 @@ const LinkedinIcon = ({ size = 18 }: { size?: number }) => (
 );
 
 export default function Contact() {
-  return (
-    <section id="contact" className="section" style={{ borderTop: '1px solid var(--border)' }}>
-      <div className="container">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.6 }}
-          style={{ textAlign: 'center', maxWidth: '640px', margin: '0 auto 4rem' }}
-        >
-          <p className="section-label" style={{ justifyContent: 'center' }}>Contact</p>
-          <h2
-            style={{
-              fontSize: 'clamp(2rem, 4vw, 3.5rem)',
-              fontWeight: 800,
-              letterSpacing: '-0.03em',
-              lineHeight: 1.08,
-              marginBottom: '1rem',
-            }}
-          >
-            Let's Build Something{' '}
-            <span style={{ color: 'var(--accent)' }}>Meaningful.</span>
-          </h2>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', lineHeight: 1.7 }}>
-            Open to software engineering opportunities, projects, and conversations around
-            technology. Reach out — I'd love to connect.
-          </p>
-        </motion.div>
+  const headlineLines = ["LET'S BUILD", 'SOMETHING', 'MEANINGFUL.'];
 
+  return (
+    <section id="contact" className="section" style={{ position: 'relative' }}>
+      <div className="container">
+        <SectionLabel id="08" title="CONTACT" />
+
+        {/* Sequential Line-by-Line Headline Reveal */}
+        <div style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto 4rem' }}>
+          {headlineLines.map((line, idx) => (
+            <motion.div
+              key={line}
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.6, delay: idx * 0.15, ease: [0.16, 1, 0.3, 1] }}
+              style={{
+                fontSize: 'clamp(2.75rem, 6.5vw, 5.5rem)',
+                fontWeight: 900,
+                letterSpacing: '-0.04em',
+                lineHeight: 1.02,
+                color: idx === 1 ? 'transparent' : 'var(--text-primary)',
+                background: idx === 1 ? 'linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%)' : undefined,
+                WebkitBackgroundClip: idx === 1 ? 'text' : undefined,
+                WebkitTextFillColor: idx === 1 ? 'transparent' : undefined,
+              }}
+            >
+              {line}
+            </motion.div>
+          ))}
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.6, delay: 0.45 }}
+            style={{ color: 'var(--text-secondary)', fontSize: '1.125rem', lineHeight: 1.7, maxWidth: '560px', margin: '1.5rem auto 0' }}
+          >
+            Open to software engineering roles, full-stack projects, and technical discussions.
+            Reach out via email or LinkedIn.
+          </motion.p>
+        </div>
+
+        {/* Sequential Contact Grid */}
         <div
           style={{
             display: 'grid',
             gridTemplateColumns: '1fr 1fr',
             gap: '2rem',
-            maxWidth: '760px',
+            maxWidth: '840px',
             margin: '0 auto',
           }}
           className="contact-grid"
         >
-          {/* Contact links column */}
+          {/* Direct Communication Channels */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}
           >
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-              {/* Email */}
-              <a
-                href="mailto:2300031575cse2@gmail.com"
-                className="profile-card"
-                aria-label="Send email to 2300031575cse2@gmail.com"
-              >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.875rem' }}>
-                  <div
-                    style={{
-                      width: '40px', height: '40px', borderRadius: '8px',
-                      background: 'var(--accent-light)', border: '1px solid var(--border-accent)',
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    }}
-                    aria-hidden="true"
-                  >
-                    <Mail size={18} style={{ color: 'var(--accent)' }} />
+            {/* Email */}
+            <a
+              href="mailto:2300031575cse2@gmail.com"
+              className="card-glass profile-card"
+              style={{ padding: '1.25rem 1.5rem', borderRadius: '16px', textDecoration: 'none' }}
+              aria-label="Send email to 2300031575cse2@gmail.com"
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                <div
+                  style={{
+                    width: '44px', height: '44px', borderRadius: '10px',
+                    background: 'var(--accent-light)', border: '1px solid var(--border-accent)',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  }}
+                  aria-hidden="true"
+                >
+                  <Mail size={20} style={{ color: 'var(--accent)' }} />
+                </div>
+                <div>
+                  <div style={{ fontSize: '0.725rem', color: 'var(--accent)', fontFamily: 'var(--font-mono)', fontWeight: 700, letterSpacing: '0.1em' }}>
+                    DIRECT EMAIL
                   </div>
-                  <div>
-                    <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)', marginBottom: '0.125rem' }}>Email</div>
-                    <div style={{ fontSize: '0.875rem', fontWeight: 600, color: 'var(--text-primary)' }}>2300031575cse2@gmail.com</div>
+                  <div style={{ fontSize: '0.9375rem', fontWeight: 700, color: 'var(--text-primary)' }}>
+                    2300031575cse2@gmail.com
                   </div>
                 </div>
-                <Mail size={14} style={{ color: 'var(--text-muted)', flexShrink: 0 }} aria-hidden="true" />
-              </a>
+              </div>
+            </a>
 
-              {/* Phone */}
-              <a
-                href="tel:+918919826717"
-                className="profile-card"
-                aria-label="Call +91 8919826717"
-              >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.875rem' }}>
-                  <div
-                    style={{
-                      width: '40px', height: '40px', borderRadius: '8px',
-                      background: 'rgba(34,197,94,0.1)', border: '1px solid rgba(34,197,94,0.25)',
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    }}
-                    aria-hidden="true"
-                  >
-                    <Phone size={18} style={{ color: '#22c55e' }} />
+            {/* Phone */}
+            <a
+              href="tel:+918919826717"
+              className="card-glass profile-card"
+              style={{ padding: '1.25rem 1.5rem', borderRadius: '16px', textDecoration: 'none' }}
+              aria-label="Call +91 8919826717"
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                <div
+                  style={{
+                    width: '44px', height: '44px', borderRadius: '10px',
+                    background: 'rgba(34,197,94,0.12)', border: '1px solid rgba(34,197,94,0.3)',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  }}
+                  aria-hidden="true"
+                >
+                  <Phone size={20} style={{ color: '#22c55e' }} />
+                </div>
+                <div>
+                  <div style={{ fontSize: '0.725rem', color: '#22c55e', fontFamily: 'var(--font-mono)', fontWeight: 700, letterSpacing: '0.1em' }}>
+                    PHONE
                   </div>
-                  <div>
-                    <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)', marginBottom: '0.125rem' }}>Phone</div>
-                    <div style={{ fontSize: '0.875rem', fontWeight: 600, color: 'var(--text-primary)' }}>+91 8919826717</div>
+                  <div style={{ fontSize: '0.9375rem', fontWeight: 700, color: 'var(--text-primary)' }}>
+                    +91 8919826717
                   </div>
                 </div>
-                <Phone size={14} style={{ color: 'var(--text-muted)', flexShrink: 0 }} aria-hidden="true" />
-              </a>
+              </div>
+            </a>
 
-              {/* LinkedIn */}
-              <a
-                href="https://www.linkedin.com/in/dheeraj-margani/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="profile-card"
-                aria-label="Visit LinkedIn profile"
-              >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.875rem' }}>
-                  <div
-                    style={{
-                      width: '40px', height: '40px', borderRadius: '8px',
-                      background: 'rgba(10,102,194,0.12)', border: '1px solid rgba(10,102,194,0.3)',
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      color: '#0A66C2',
-                    }}
-                    aria-hidden="true"
-                  >
-                    <LinkedinIcon size={18} />
+            {/* LinkedIn Quick */}
+            <a
+              href="https://www.linkedin.com/in/dheeraj-margani/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="card-glass profile-card"
+              style={{ padding: '1.25rem 1.5rem', borderRadius: '16px', textDecoration: 'none' }}
+              aria-label="Visit LinkedIn profile"
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                <div
+                  style={{
+                    width: '44px', height: '44px', borderRadius: '10px',
+                    background: 'rgba(10,102,194,0.15)', border: '1px solid rgba(10,102,194,0.35)',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    color: '#0A66C2',
+                  }}
+                  aria-hidden="true"
+                >
+                  <LinkedinIcon size={20} />
+                </div>
+                <div>
+                  <div style={{ fontSize: '0.725rem', color: '#0A66C2', fontFamily: 'var(--font-mono)', fontWeight: 700, letterSpacing: '0.1em' }}>
+                    LINKEDIN
                   </div>
-                  <div>
-                    <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)', marginBottom: '0.125rem' }}>LinkedIn</div>
-                    <div style={{ fontSize: '0.875rem', fontWeight: 600, color: 'var(--text-primary)' }}>dheeraj-margani</div>
+                  <div style={{ fontSize: '0.9375rem', fontWeight: 700, color: 'var(--text-primary)' }}>
+                    dheeraj-margani
                   </div>
                 </div>
-                <Link2 size={14} style={{ color: 'var(--text-muted)', flexShrink: 0 }} aria-hidden="true" />
-              </a>
-
-              {/* GitHub */}
-              <a
-                href="https://github.com/Dheeraj1575"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="profile-card"
-                aria-label="Visit GitHub profile"
-              >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.875rem' }}>
-                  <div
-                    style={{
-                      width: '40px', height: '40px', borderRadius: '8px',
-                      background: 'var(--bg-elevated)', border: '1px solid var(--border)',
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      color: 'var(--text-primary)',
-                    }}
-                    aria-hidden="true"
-                  >
-                    <GithubIcon size={18} />
-                  </div>
-                  <div>
-                    <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)', marginBottom: '0.125rem' }}>GitHub</div>
-                    <div style={{ fontSize: '0.875rem', fontWeight: 600, color: 'var(--text-primary)' }}>Dheeraj1575</div>
-                  </div>
-                </div>
-                <ExternalLink size={14} style={{ color: 'var(--text-muted)', flexShrink: 0 }} aria-hidden="true" />
-              </a>
-            </div>
+              </div>
+            </a>
           </motion.div>
 
-          {/* Primary CTA column */}
+          {/* Magnetic CTA Box */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '1rem' }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}
           >
-            <div className="card card-accent" style={{ padding: '1.75rem', textAlign: 'center' }}>
+            <div className="card-glass" style={{ padding: '2.25rem', borderRadius: '24px', textAlign: 'center' }}>
               <div
                 style={{
-                  width: '48px', height: '48px', borderRadius: '12px',
+                  width: '52px', height: '52px', borderRadius: '14px',
                   background: 'var(--accent-light)', border: '1px solid var(--border-accent)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  margin: '0 auto 1rem',
+                  margin: '0 auto 1.25rem',
                 }}
                 aria-hidden="true"
               >
-                <Send size={22} style={{ color: 'var(--accent)' }} />
+                <Send size={24} style={{ color: 'var(--accent)' }} />
               </div>
-              <h3 style={{ fontSize: '1.125rem', fontWeight: 700, marginBottom: '0.5rem' }}>
-                Ready to Connect?
+              <h3 style={{ fontSize: '1.25rem', fontWeight: 800, marginBottom: '0.5rem', color: 'var(--text-primary)' }}>
+                Start a Conversation
               </h3>
-              <p style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', marginBottom: '1.25rem', lineHeight: 1.6 }}>
-                I'm actively looking for software engineering opportunities. Let's talk.
+              <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '1.75rem', lineHeight: 1.6 }}>
+                Currently available for full-time engineering roles, software projects, and technical opportunities.
               </p>
-              <a
-                href="mailto:2300031575cse2@gmail.com"
-                className="btn btn-primary"
-                style={{ width: '100%', justifyContent: 'center' }}
-                aria-label="Send email to Dheeraj"
-              >
-                <Mail size={16} />
-                Email Me
-              </a>
-              <a
-                href="https://www.linkedin.com/in/dheeraj-margani/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-secondary"
-                style={{ width: '100%', justifyContent: 'center', marginTop: '0.5rem' }}
-                aria-label="Connect on LinkedIn"
-              >
-                <Link2 size={16} />
-                Connect on LinkedIn
-              </a>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                <MagneticButton
+                  href="mailto:2300031575cse2@gmail.com"
+                  className="btn btn-primary"
+                  style={{ width: '100%', justifyContent: 'center', borderRadius: '100px', padding: '0.75rem' }}
+                >
+                  <Mail size={16} />
+                  <span>EMAIL ME</span>
+                </MagneticButton>
+
+                <MagneticButton
+                  href="https://www.linkedin.com/in/dheeraj-margani/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-secondary"
+                  style={{ width: '100%', justifyContent: 'center', borderRadius: '100px', padding: '0.75rem' }}
+                >
+                  <Link2 size={16} />
+                  <span>LINKEDIN</span>
+                </MagneticButton>
+              </div>
             </div>
 
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', justifyContent: 'center', padding: '0.75rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', justifyContent: 'center', marginTop: '1.25rem' }}>
               <span className="availability-dot" aria-hidden="true" />
               <span style={{ fontSize: '0.8125rem', color: 'var(--text-secondary)', fontFamily: 'var(--font-mono)' }}>
-                Open to software engineering opportunities
+                ACTIVE &amp; READY TO CONNECT
               </span>
             </div>
           </motion.div>
@@ -229,7 +223,7 @@ export default function Contact() {
       </div>
 
       <style>{`
-        @media (max-width: 640px) {
+        @media (max-width: 768px) {
           .contact-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>

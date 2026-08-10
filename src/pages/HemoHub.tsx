@@ -93,11 +93,16 @@ const SystemDiagram = () => (
   </svg>
 );
 
+import CustomCursor from '../components/CustomCursor/CustomCursor';
+import EngineeringBackground from '../components/Background/EngineeringBackground';
+
 export default function HemoHub() {
   return (
     <>
+      <CustomCursor />
+      <EngineeringBackground />
       <Navbar />
-      <main style={{ paddingTop: '64px' }}>
+      <main style={{ paddingTop: '80px', position: 'relative', zIndex: 1 }}>
         {/* Header */}
         <div
           style={{

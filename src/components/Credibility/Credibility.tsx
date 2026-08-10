@@ -3,8 +3,8 @@ import { motion } from 'framer-motion';
 const stats = [
   { value: '9.45', unit: '/ 10', label: 'CGPA', sublabel: 'B.Tech CSE' },
   { value: '8+', unit: '', label: 'Certifications', sublabel: 'AWS · Azure · MongoDB+' },
-  { value: '2', unit: '', label: 'Projects', sublabel: 'Full-Stack Applications' },
-  { value: 'Multi', unit: '', label: 'Cloud', sublabel: 'AWS · Azure · GCP' },
+  { value: '2', unit: '', label: 'Projects', sublabel: 'Full-Stack Systems' },
+  { value: 'Multi', unit: '', label: 'Cloud Stack', sublabel: 'AWS · Azure · GCP' },
 ];
 
 export default function Credibility() {
@@ -12,9 +12,11 @@ export default function Credibility() {
     <section
       className="section-sm"
       style={{
+        position: 'relative',
+        background: 'rgba(13, 15, 24, 0.4)',
+        backdropFilter: 'blur(12px)',
         borderTop: '1px solid var(--border)',
         borderBottom: '1px solid var(--border)',
-        background: 'var(--bg-secondary)',
         overflow: 'hidden',
       }}
       aria-label="Key credentials overview"
@@ -46,12 +48,12 @@ export default function Credibility() {
               }}
               className="credibility-item"
             >
-              <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'center', gap: '0.125rem', marginBottom: '0.25rem' }}>
+              <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'center', gap: '0.25rem', marginBottom: '0.25rem' }}>
                 <span
                   style={{
-                    fontSize: 'clamp(1.75rem, 3vw, 2.5rem)',
-                    fontWeight: 800,
-                    letterSpacing: '-0.03em',
+                    fontSize: 'clamp(2rem, 3.5vw, 2.75rem)',
+                    fontWeight: 900,
+                    letterSpacing: '-0.04em',
                     color: 'var(--text-primary)',
                     lineHeight: 1,
                   }}
@@ -62,8 +64,8 @@ export default function Credibility() {
                   <span
                     style={{
                       fontSize: '1rem',
-                      fontWeight: 500,
-                      color: 'var(--text-muted)',
+                      fontWeight: 600,
+                      color: 'var(--accent)',
                       fontFamily: 'var(--font-mono)',
                     }}
                   >
@@ -73,9 +75,9 @@ export default function Credibility() {
               </div>
               <div
                 style={{
-                  fontSize: '0.6875rem',
-                  fontWeight: 700,
-                  letterSpacing: '0.12em',
+                  fontSize: '0.725rem',
+                  fontWeight: 800,
+                  letterSpacing: '0.18em',
                   textTransform: 'uppercase',
                   color: 'var(--accent)',
                   fontFamily: 'var(--font-mono)',
@@ -99,7 +101,7 @@ export default function Credibility() {
       </div>
 
       <style>{`
-        @media (max-width: 640px) {
+        @media (max-width: 768px) {
           .credibility-grid {
             grid-template-columns: 1fr 1fr !important;
           }
@@ -110,9 +112,6 @@ export default function Credibility() {
           .credibility-item:nth-child(2) {
             border-bottom: 1px solid var(--border) !important;
           }
-        }
-        @media (max-width: 480px) {
-          .credibility-item { padding: 1.25rem 1rem !important; }
         }
       `}</style>
     </section>

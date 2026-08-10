@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Code2, ChefHat, Terminal, ExternalLink, Link2 } from 'lucide-react';
+import { ArrowRight, Code2, ChefHat, Terminal, Link2 } from 'lucide-react';
 import { profiles } from '../../data/profiles';
+import { SectionLabel } from '../Common/SectionInterstitials';
 
-// Map icon string → JSX element
 const iconMap: Record<string, React.ReactNode> = {
   github: <Code2 size={22} aria-hidden="true" />,
   linkedin: <Link2 size={22} aria-hidden="true" />,
@@ -13,42 +13,45 @@ const iconMap: Record<string, React.ReactNode> = {
 
 export default function Profiles() {
   return (
-    <section
-      id="profiles"
-      className="section"
-      style={{ background: 'var(--bg-secondary)', borderTop: '1px solid var(--border)' }}
-    >
+    <section id="profiles" className="section" style={{ position: 'relative' }}>
       <div className="container">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.6 }}
-          style={{ marginBottom: '3.5rem' }}
-        >
-          <p className="section-label">Online Presence</p>
-          <h2
+        <SectionLabel id="06" title="PROFILES" />
+
+        <div style={{ marginBottom: '3.5rem', maxWidth: '640px' }}>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.6 }}
             style={{
-              fontSize: 'clamp(1.75rem, 3vw, 2.5rem)',
-              fontWeight: 800,
+              fontSize: 'clamp(2rem, 4vw, 3.25rem)',
+              fontWeight: 900,
               letterSpacing: '-0.03em',
-              lineHeight: 1.15,
-              marginBottom: '0.75rem',
+              lineHeight: 1.08,
             }}
           >
-            Problem Solving &amp;
-            <span style={{ color: 'var(--accent)' }}> Online Profiles</span>
-          </h2>
-          <p style={{ color: 'var(--text-secondary)', maxWidth: '480px', fontSize: '0.9375rem' }}>
-            Active across major coding and professional platforms. Visit my profiles below.
+            INTERACTIVE
+            <br />
+            <span
+              style={{
+                background: 'linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+              }}
+            >
+              ENGINEERING PORTALS
+            </span>
+          </motion.h2>
+          <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', lineHeight: 1.7 }}>
+            Active across major software engineering, competitive programming, and professional platforms.
           </p>
-        </motion.div>
+        </div>
 
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(2, 1fr)',
-            gap: '0.75rem',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+            gap: '1.25rem',
           }}
           className="profiles-grid"
         >
@@ -58,20 +61,29 @@ export default function Profiles() {
               href={profile.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="profile-card"
+              className="card-glass profile-card"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.4, delay: index * 0.08 }}
+              transition={{ duration: 0.4, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ y: -4, transition: { duration: 0.25 } }}
+              style={{
+                padding: '1.5rem',
+                borderRadius: '16px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                textDecoration: 'none',
+              }}
               aria-label={`Visit ${profile.platform} profile — ${profile.username}`}
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                {/* Icon container */}
-                <div
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
+                <motion.div
+                  whileHover={{ scale: 1.1, rotate: 3 }}
                   style={{
-                    width: '44px',
-                    height: '44px',
-                    borderRadius: '10px',
+                    width: '48px',
+                    height: '48px',
+                    borderRadius: '12px',
                     background: 'var(--bg-elevated)',
                     border: '1px solid var(--border)',
                     display: 'flex',
@@ -79,18 +91,17 @@ export default function Profiles() {
                     justifyContent: 'center',
                     color: profile.color,
                     flexShrink: 0,
-                    transition: 'all var(--transition)',
+                    boxShadow: `0 4px 14px ${profile.color}20`,
                   }}
                 >
-                  {iconMap[profile.icon] ?? <ExternalLink size={22} aria-hidden="true" />}
-                </div>
+                  {iconMap[profile.icon] ?? <Link2 size={22} aria-hidden="true" />}
+                </motion.div>
 
-                {/* Text */}
                 <div>
                   <div
                     style={{
-                      fontSize: '0.9375rem',
-                      fontWeight: 700,
+                      fontSize: '1rem',
+                      fontWeight: 800,
                       color: 'var(--text-primary)',
                       marginBottom: '0.125rem',
                     }}
@@ -101,7 +112,7 @@ export default function Profiles() {
                     style={{
                       fontFamily: 'var(--font-mono)',
                       fontSize: '0.75rem',
-                      color: 'var(--text-muted)',
+                      color: 'var(--accent)',
                     }}
                   >
                     @{profile.username}
@@ -109,8 +120,8 @@ export default function Profiles() {
                   <div
                     style={{
                       fontSize: '0.75rem',
-                      color: 'var(--text-subtle)',
-                      marginTop: '0.125rem',
+                      color: 'var(--text-muted)',
+                      marginTop: '0.25rem',
                     }}
                   >
                     {profile.description}
@@ -118,24 +129,13 @@ export default function Profiles() {
                 </div>
               </div>
 
-              {/* Arrow */}
-              <ArrowRight
-                size={16}
-                style={{ color: 'var(--text-muted)', flexShrink: 0, transition: 'color var(--transition)' }}
-                aria-hidden="true"
-              />
+              <span className="hover-arrow">
+                <ArrowRight size={18} style={{ color: 'var(--text-muted)' }} aria-hidden="true" />
+              </span>
             </motion.a>
           ))}
         </div>
       </div>
-
-      <style>{`
-        @media (max-width: 640px) {
-          .profiles-grid {
-            grid-template-columns: 1fr !important;
-          }
-        }
-      `}</style>
     </section>
   );
 }

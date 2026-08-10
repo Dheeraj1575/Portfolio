@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { BookOpen, Layers, Cloud, GraduationCap } from 'lucide-react';
+import { SectionLabel } from '../Common/SectionInterstitials';
 
 const values = [
   {
@@ -12,21 +13,21 @@ const values = [
   {
     number: '02',
     icon: Layers,
-    title: 'Full-Stack Development',
+    title: 'Full-Stack Engineering',
     items: ['React.js', 'Spring Boot', 'REST APIs', 'MySQL'],
     color: 'var(--cyan)',
   },
   {
     number: '03',
     icon: Cloud,
-    title: 'Cloud Knowledge',
+    title: 'Cloud Systems',
     items: ['Amazon Web Services', 'Microsoft Azure', 'Google Cloud Platform', 'Multicloud Networking'],
     color: '#a78bfa',
   },
   {
     number: '04',
     icon: GraduationCap,
-    title: 'Continuous Learning',
+    title: 'Continuous Rigor',
     items: ['Professional Certifications', 'NPTEL Courses', 'Coding Platforms', 'Hands-on Projects'],
     color: '#f59e0b',
   },
@@ -34,68 +35,74 @@ const values = [
 
 export default function ValueSection() {
   return (
-    <section id="value" className="section" style={{ borderTop: '1px solid var(--border)' }}>
+    <section id="value" className="section" style={{ position: 'relative' }}>
       <div className="container">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.6 }}
-          style={{ marginBottom: '4rem', maxWidth: '600px' }}
-        >
-          <p className="section-label">What I Bring</p>
-          <h2
+        <SectionLabel id="07" title="VALUE PROPOSITION" />
+
+        <div style={{ marginBottom: '4rem', maxWidth: '640px' }}>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.6 }}
             style={{
-              fontSize: 'clamp(1.75rem, 3vw, 2.5rem)',
-              fontWeight: 800,
+              fontSize: 'clamp(2rem, 3.5vw, 3rem)',
+              fontWeight: 900,
               letterSpacing: '-0.03em',
-              lineHeight: 1.15,
+              lineHeight: 1.1,
             }}
           >
-            What I Bring
-            <span style={{ color: 'var(--accent)' }}> to the Table</span>
-          </h2>
-        </motion.div>
+            ENGINEERING
+            <br />
+            <span
+              style={{
+                background: 'linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+              }}
+            >
+              CAPABILITIES
+            </span>
+          </motion.h2>
+        </div>
 
         <div
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(4, 1fr)',
-            gap: '1rem',
+            gap: '1.25rem',
           }}
           className="value-grid"
         >
           {values.map((v, index) => (
             <motion.div
               key={v.number}
-              className="card"
+              className="card-glass"
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              style={{ padding: '1.75rem' }}
+              style={{ padding: '1.75rem', borderRadius: '16px' }}
             >
-              {/* Number */}
               <div
                 style={{
                   fontFamily: 'var(--font-mono)',
                   fontSize: '0.65rem',
-                  fontWeight: 700,
-                  letterSpacing: '0.15em',
-                  color: 'var(--text-subtle)',
+                  fontWeight: 800,
+                  letterSpacing: '0.2em',
+                  color: 'var(--accent)',
                   marginBottom: '1rem',
                 }}
               >
-                {v.number}
+                SYS // {v.number}
               </div>
 
-              {/* Icon */}
               <div
                 style={{
-                  width: '40px',
-                  height: '40px',
-                  borderRadius: '10px',
-                  background: `${v.color}14`,
+                  width: '44px',
+                  height: '44px',
+                  borderRadius: '12px',
+                  background: `${v.color}15`,
                   border: `1px solid ${v.color}30`,
                   display: 'flex',
                   alignItems: 'center',
@@ -104,22 +111,22 @@ export default function ValueSection() {
                 }}
                 aria-hidden="true"
               >
-                <v.icon size={20} style={{ color: v.color }} />
+                <v.icon size={22} style={{ color: v.color }} />
               </div>
 
               <h3
                 style={{
-                  fontSize: '1rem',
-                  fontWeight: 700,
+                  fontSize: '1.0625rem',
+                  fontWeight: 800,
                   marginBottom: '1rem',
                   color: 'var(--text-primary)',
-                  lineHeight: 1.2,
+                  lineHeight: 1.25,
                 }}
               >
                 {v.title}
               </h3>
 
-              <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.375rem' }}>
+              <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
                 {v.items.map((item) => (
                   <li
                     key={item}
@@ -131,7 +138,7 @@ export default function ValueSection() {
                       gap: '0.5rem',
                     }}
                   >
-                    <span style={{ color: v.color, fontSize: '0.6rem' }} aria-hidden="true">▸</span>
+                    <span style={{ color: v.color, fontSize: '0.7rem' }} aria-hidden="true">▸</span>
                     {item}
                   </li>
                 ))}
@@ -142,10 +149,10 @@ export default function ValueSection() {
       </div>
 
       <style>{`
-        @media (max-width: 900px) {
+        @media (max-width: 960px) {
           .value-grid { grid-template-columns: 1fr 1fr !important; }
         }
-        @media (max-width: 480px) {
+        @media (max-width: 500px) {
           .value-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>
