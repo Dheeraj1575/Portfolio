@@ -27,11 +27,6 @@ export default function Credibility() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6 }}
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(4, 1fr)',
-            gap: '0',
-          }}
           className="credibility-grid"
         >
           {stats.map((stat, index) => (
@@ -100,20 +95,7 @@ export default function Credibility() {
         </motion.div>
       </div>
 
-      <style>{`
-        @media (max-width: 768px) {
-          .credibility-grid {
-            grid-template-columns: 1fr 1fr !important;
-          }
-          .credibility-item:nth-child(2) {
-            border-right: none !important;
-          }
-          .credibility-item:nth-child(1),
-          .credibility-item:nth-child(2) {
-            border-bottom: 1px solid var(--border) !important;
-          }
-        }
-      `}</style>
+
     </section>
   );
 }

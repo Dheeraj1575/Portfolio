@@ -24,12 +24,6 @@ export default function About() {
         <SectionLabel id="01" title="ABOUT" />
 
         <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: '4rem',
-            alignItems: 'start',
-          }}
           className="about-grid"
         >
           {/* Left: Large Editorial Statement */}
@@ -163,14 +157,7 @@ export default function About() {
         </div>
       </div>
 
-      <style>{`
-        @media (max-width: 840px) {
-          .about-grid {
-            grid-template-columns: 1fr !important;
-            gap: 2.5rem !important;
-          }
-        }
-      `}</style>
+
     </section>
   );
 }

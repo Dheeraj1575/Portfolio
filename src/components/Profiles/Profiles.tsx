@@ -48,11 +48,6 @@ export default function Profiles() {
         </div>
 
         <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
-            gap: '1.25rem',
-          }}
           className="profiles-grid"
         >
           {profiles.map((profile, index) => (

@@ -72,12 +72,6 @@ export default function Skills() {
 
         {/* Dynamic Skill Constellation Container */}
         <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: '1.25rem',
-            position: 'relative',
-          }}
           className="skills-grid"
         >
           {skillCategories.map((category, index) => {
@@ -184,14 +178,7 @@ export default function Skills() {
         </div>
       </div>
 
-      <style>{`
-        @media (max-width: 960px) {
-          .skills-grid { grid-template-columns: 1fr 1fr !important; }
-        }
-        @media (max-width: 600px) {
-          .skills-grid { grid-template-columns: 1fr !important; }
-        }
-      `}</style>
+
     </section>
   );
 }

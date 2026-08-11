@@ -222,15 +222,10 @@ export default function Projects() {
             }}
           >
             <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: '1fr 1fr',
-                minHeight: '420px',
-              }}
               className="project-card-grid"
             >
               {/* Staggered Content Panel */}
-              <div style={{ padding: '3rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+              <div className="project-content-panel">
                 <div>
                   <motion.div
                     initial={{ opacity: 0, y: 15 }}
@@ -328,13 +323,10 @@ export default function Projects() {
 
               {/* Architecture Visual Panel */}
               <div
-                className="project-visual"
+                className="project-visual project-visual-panel"
                 style={{
                   borderLeft: '1px solid var(--border)',
                   background: 'rgba(7, 8, 14, 0.85)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  padding: '1.5rem',
                 }}
               >
                 <ProjectVisualHemoHub />
@@ -356,29 +348,21 @@ export default function Projects() {
             }}
           >
             <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: '1fr 1fr',
-                minHeight: '420px',
-              }}
               className="project-card-grid"
             >
               {/* Architecture Visual Panel */}
               <div
-                className="project-visual project-visual-reverse"
+                className="project-visual project-visual-panel project-visual-reverse"
                 style={{
                   borderRight: '1px solid var(--border)',
                   background: 'rgba(7, 8, 14, 0.85)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  padding: '1.5rem',
                 }}
               >
                 <ProjectVisualDisaster />
               </div>
 
               {/* Content Panel */}
-              <div style={{ padding: '3rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+              <div className="project-content-panel">
                 <div>
                   <motion.div
                     initial={{ opacity: 0, y: 15 }}
@@ -478,19 +462,7 @@ export default function Projects() {
         </div>
       </div>
 
-      <style>{`
-        @media (max-width: 900px) {
-          .project-card-grid {
-            grid-template-columns: 1fr !important;
-          }
-          .project-card-grid > div {
-            border: none !important;
-          }
-          .project-visual-reverse {
-            order: -1;
-          }
-        }
-      `}</style>
+
     </section>
   );
 }

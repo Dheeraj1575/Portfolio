@@ -43,13 +43,14 @@ export default function Hero({ introFinished = true }: HeroProps) {
   return (
     <section
       id="hero"
+      className="hero-section"
       style={{
-        minHeight: '85vh',
+        minHeight: 'min(85vh, 100svh)',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
-        paddingTop: '80px',
-        paddingBottom: '20px',
+        paddingTop: 'clamp(72px, 12vw, 100px)',
+        paddingBottom: '2rem',
         position: 'relative',
         overflow: 'hidden',
       }}
@@ -59,12 +60,6 @@ export default function Hero({ introFinished = true }: HeroProps) {
           initial={{ opacity: 0, scale: 0.97 }}
           animate={{ opacity: introFinished ? 1 : 0, scale: introFinished ? 1 : 0.97 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '1.1fr 0.9fr',
-            gap: '4rem',
-            alignItems: 'center',
-          }}
           className="hero-grid"
         >
           {/* LEFT SIDE: Strong Introduction */}
@@ -79,7 +74,7 @@ export default function Hero({ introFinished = true }: HeroProps) {
               <span
                 style={{
                   fontFamily: 'var(--font-mono)',
-                  fontSize: '0.8125rem',
+                  fontSize: 'clamp(0.7rem, 1.5vw, 0.8125rem)',
                   fontWeight: 700,
                   letterSpacing: '0.25em',
                   textTransform: 'uppercase',
@@ -100,11 +95,11 @@ export default function Hero({ introFinished = true }: HeroProps) {
               animate={{ opacity: introFinished ? 1 : 0, y: introFinished ? 0 : 20 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               style={{
-                fontSize: 'clamp(3.5rem, 8vw, 6.5rem)',
+                fontSize: 'clamp(2.75rem, 8vw, 6.5rem)',
                 fontWeight: 900,
                 lineHeight: 0.95,
                 letterSpacing: '-0.04em',
-                marginBottom: '1rem',
+                marginBottom: '0.875rem',
                 color: 'var(--text-primary)',
               }}
             >
@@ -117,10 +112,10 @@ export default function Hero({ introFinished = true }: HeroProps) {
               animate={{ opacity: introFinished ? 1 : 0, y: introFinished ? 0 : 15 }}
               transition={{ duration: 0.6, delay: 0.3 }}
               style={{
-                fontSize: 'clamp(1.25rem, 2.5vw, 1.75rem)',
+                fontSize: 'clamp(1rem, 2.5vw, 1.75rem)',
                 fontWeight: 700,
                 letterSpacing: '-0.02em',
-                marginBottom: '1.5rem',
+                marginBottom: '1.25rem',
                 background: 'linear-gradient(135deg, #3b82f6 0%, #a78bfa 50%, #06b6d4 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
@@ -135,10 +130,10 @@ export default function Hero({ introFinished = true }: HeroProps) {
               animate={{ opacity: introFinished ? 1 : 0, y: introFinished ? 0 : 15 }}
               transition={{ duration: 0.6, delay: 0.4 }}
               style={{
-                fontSize: '1.0625rem',
+                fontSize: 'clamp(0.9rem, 1.5vw, 1.0625rem)',
                 lineHeight: 1.75,
                 color: 'var(--text-secondary)',
-                marginBottom: '2.25rem',
+                marginBottom: '2rem',
                 maxWidth: '520px',
               }}
             >
@@ -151,7 +146,7 @@ export default function Hero({ introFinished = true }: HeroProps) {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: introFinished ? 1 : 0, y: introFinished ? 0 : 15 }}
               transition={{ duration: 0.6, delay: 0.5 }}
-              style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}
+              className="hero-buttons"
             >
               <MagneticButton
                 href="#projects"
@@ -169,7 +164,7 @@ export default function Hero({ introFinished = true }: HeroProps) {
               <MagneticButton
                 href="/resume.pdf"
                 download="Margani_Dheeraj_Resume.pdf"
-                className="btn btn-secondary"
+                className="btn btn-secondary btn-download"
                 style={{ borderRadius: '100px', padding: '0.8125rem 2rem', fontSize: '0.875rem' }}
               >
                 <Download size={16} />
@@ -210,17 +205,10 @@ export default function Hero({ introFinished = true }: HeroProps) {
 
             {/* Editorial Portrait Glass Frame */}
             <div
-              className="card-glass"
+              className="hero-portrait-frame card-glass"
               style={{
                 position: 'relative',
-                width: '100%',
-                maxWidth: '420px',
                 aspectRatio: '0.82',
-                borderRadius: '32px',
-                overflow: 'hidden',
-                padding: '10px',
-                border: '1px solid rgba(255, 255, 255, 0.12)',
-                boxShadow: '0 20px 50px rgba(0, 0, 0, 0.7), 0 0 30px rgba(59, 130, 246, 0.15)',
               }}
             >
               {/* Inner Image Container */}
@@ -241,7 +229,7 @@ export default function Hero({ introFinished = true }: HeroProps) {
                     width: '100%',
                     height: '100%',
                     objectFit: 'cover',
-                    objectPosition: 'center 15%', // Chest-up / upper body crop
+                    objectPosition: 'center 15%',
                     display: 'block',
                     transition: 'transform 0.5s ease',
                   }}
@@ -293,11 +281,19 @@ export default function Hero({ introFinished = true }: HeroProps) {
             flexDirection: 'column',
             alignItems: 'center',
             gap: '0.375rem',
-            marginTop: '3rem',
+            marginTop: '2.5rem',
             cursor: 'pointer',
           }}
           onClick={() => {
             document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
+          }}
+          role="button"
+          aria-label="Scroll to About section"
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
+            }
           }}
         >
           <span
@@ -320,18 +316,6 @@ export default function Hero({ introFinished = true }: HeroProps) {
           </motion.div>
         </motion.div>
       </div>
-
-      <style>{`
-        @media (max-width: 960px) {
-          .hero-grid {
-            grid-template-columns: 1fr !important;
-            gap: 2.5rem !important;
-          }
-          .hero-grid > div:last-child {
-            order: -1; /* Photo on top or clean flow on mobile */
-          }
-        }
-      `}</style>
     </section>
   );
 }

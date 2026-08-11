@@ -54,13 +54,6 @@ export default function Contact() {
 
         {/* Sequential Contact Grid */}
         <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: '2rem',
-            maxWidth: '840px',
-            margin: '0 auto',
-          }}
           className="contact-grid"
         >
           {/* Direct Communication Channels */}
@@ -93,7 +86,7 @@ export default function Contact() {
                   <div style={{ fontSize: '0.725rem', color: 'var(--accent)', fontFamily: 'var(--font-mono)', fontWeight: 700, letterSpacing: '0.1em' }}>
                     DIRECT EMAIL
                   </div>
-                  <div style={{ fontSize: '0.9375rem', fontWeight: 700, color: 'var(--text-primary)' }}>
+                  <div className="email-text" style={{ fontSize: '0.9375rem', fontWeight: 700, color: 'var(--text-primary)' }}>
                     2300031575cse2@gmail.com
                   </div>
                 </div>
@@ -222,11 +215,7 @@ export default function Contact() {
         </div>
       </div>
 
-      <style>{`
-        @media (max-width: 768px) {
-          .contact-grid { grid-template-columns: 1fr !important; }
-        }
-      `}</style>
+
     </section>
   );
 }

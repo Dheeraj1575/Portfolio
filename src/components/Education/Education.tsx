@@ -45,12 +45,6 @@ export default function Education() {
         </div>
 
         <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '1.2fr 0.8fr',
-            gap: '4rem',
-            alignItems: 'start',
-          }}
           className="education-layout"
         >
           {/* Animated Timeline Stream */}
@@ -300,14 +294,7 @@ export default function Education() {
         </div>
       </div>
 
-      <style>{`
-        @media (max-width: 840px) {
-          .education-layout {
-            grid-template-columns: 1fr !important;
-            gap: 3rem !important;
-          }
-        }
-      `}</style>
+
     </section>
   );
 }

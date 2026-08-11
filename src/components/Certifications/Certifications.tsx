@@ -294,11 +294,7 @@ export default function Certifications() {
                 </div>
 
                 <div
-                  style={{
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-                    gap: '1.25rem',
-                  }}
+                  className="certs-grid"
                 >
                   {groupCerts.map((cert, index) => (
                     <CertCard
