@@ -222,19 +222,29 @@ export default function Hero({ introFinished = true }: HeroProps) {
                   background: 'var(--bg-tertiary)',
                 }}
               >
-                <img
-                  src="/profile.jpg"
-                  alt="Margani Dheeraj Naga Sai Subhash — Software Engineer"
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    objectPosition: 'center 15%',
-                    display: 'block',
-                    transition: 'transform 0.5s ease',
-                  }}
-                  loading="eager"
-                />
+                <picture style={{ display: 'block', width: '100%', height: '100%' }}>
+                  <source
+                    media="(orientation: portrait), (max-width: 840px)"
+                    srcSet="/portrait_profile.jpg"
+                  />
+                  <source
+                    media="(orientation: landscape) and (min-width: 841px)"
+                    srcSet="/landscape_profile.jpg"
+                  />
+                  <img
+                    src="/landscape_profile.jpg"
+                    alt="Margani Dheeraj Naga Sai Subhash — Software Engineer"
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      objectPosition: 'center 15%',
+                      display: 'block',
+                      transition: 'transform 0.5s ease',
+                    }}
+                    loading="eager"
+                  />
+                </picture>
 
                 {/* Subtle Gradient Overlay at Bottom of Photo */}
                 <div
